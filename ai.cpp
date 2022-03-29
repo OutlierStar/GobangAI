@@ -5,12 +5,18 @@
     #include <string.h>
 /*宏定义*/ 
     #define MAXIMUS 15 //定义棋盘大小
+/*全局变量*/ 
+int p[MAXIMUS][MAXIMUS];//存储对局信息
+int Cx,Cy;//当前光标位置
+int Now;//当前走子的玩家，1代表黑，2代表白
 /*函数声明*/ 
-void Auto();
+void Auto(int p[MAXIMUS][MAXIMUS],int *k,int *l);
 int AICheck(int Cx,int Cy,int now);
 int Scoring(int w,int x,int y,int z);
 int Statistics(int w,int x,int y,int z,int num);
-int Judge(int a[]);int standard(int a[10]);
+int Compare(int k,int l);
+int Judge(int a[]);
+int standard(int a[10]);
 
 int AliveTwo[4][10] = {2,2,0,0,1,1,0,2,2,2, // 1
 						   2,2,0,1,1,0,2,2,2,2,
@@ -50,28 +56,27 @@ int AliveTwo[4][10] = {2,2,0,0,1,1,0,2,2,2, // 1
 						  
 						 };
 
-void Auto(){
+void Auto(int p[MAXIMUS][MAXIMUS],int *k,int *l){
     	int q[15][15]={};
-    	int k=7;
-    	int l=7;
-    	int MAX=0;int scored;
+    	int m=7;
+    	int n=7;
+    	int MAX=0;
     	for(int i = 0; i < MAXIMUS; i++){
 			for(int j = 0; j < MAXIMUS; j ++){
 				if(p[i][j] != 0)
 					continue;
 				q[i][j]=AICheck(i,j,Now);
 				if(q[i][j]>MAX){
-					k = i;
-					l = j;
+					m = i;
+					n = j;
 					MAX=q[i][j];
 				}
 				
 			}
 		}
-		
-		Cx=k;
-		Cy=l;
-    	Put();
+	
+    	*k=m;
+	*l=n;
 	}
 
 int AICheck(int Cx,int Cy,int now){		//  检测该位置八个方向上的棋子并统计该点分数 
