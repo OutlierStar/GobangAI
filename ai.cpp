@@ -1,3 +1,88 @@
+/*头文件*/    
+#include <stdlib.h>
+    #include <stdio.h>
+    #include <conio.h>
+    #include <string.h>
+/*宏定义*/ 
+    #define MAXIMUS 15 //定义棋盘大小
+/*函数声明*/ 
+void Auto();
+int AICheck(int Cx,int Cy,int now);
+int Scoring(int w,int x,int y,int z);
+int Statistics(int w,int x,int y,int z,int num);
+int Judge(int a[]);int standard(int a[10]);
+
+int AliveTwo[4][10] = {2,2,0,0,1,1,0,2,2,2, // 1
+						   2,2,0,1,1,0,2,2,2,2,
+						   2,2,0,1,0,1,0,2,2,2,
+						   2,0,1,1,0,0,2,2,2,2
+						  };
+	int AliveThree[2][10]={2,0,1,1,1,0,2,2,2,2, // 2
+						   2,2,0,1,1,1,0,2,2,2
+						  };		 
+	int DangeFour[3][10]= {2,2,1,1,1,1,2,2,2,2, // 3
+						   2,2,2,1,1,1,1,2,2,2,
+						   2,1,1,1,1,2,2,2,2,2
+						  };
+	int AsleepTwo[5][10]= {2,-1,0,0,1,1,-1,2,2,2, // 4
+						   2,0,0,0,1,1,-1,2,2,2,
+						   2,2,2,0,0,1,1,-1,2,2,
+						   2,0,0,1,1,-1,2,2,2,2,
+						   2,0,1,1,0,-1,2,2,2,2
+						  };
+	int AsleepThree[10][10]={2,0,1,1,1,-1,2,2,2,2, // 5
+						   2,1,1,0,1,-1,2,2,2,2,
+						   2,1,1,1,0,-1,2,2,2,2,
+						   2,1,0,1,1,-1,2,2,2,2,
+						   2,2,0,1,1,1,-1,2,2,2,
+						   2,2,1,0,1,1,2,2,2,2,
+						   2,2,1,1,0,1,-1,2,2,2,
+						   2,2,2,0,1,1,1,-1,2,2,
+						   2,2,2,2,0,1,1,1,-1,2,
+						   2,2,2,2,2,0,1,1,1,-1
+						  };
+	int OnlyOne[3][10] = {2,2,2,2,1,2,2,2,2,2, // 6
+						  0,0,0,0,1,0,0,0,0,0,
+						  0,0,0,0,-1,0,0,0,0,0
+						  
+						  };
+	int OnlyTwo[1][10] = {0,0,0,1,0,0,0,0,0,0 // 7
+						  
+						 };
+
+void Auto(){
+    	int q[15][15]={};
+    	int k=7;
+    	int l=7;
+    	int MAX=0;int scored;
+    	for(int i = 0; i < MAXIMUS; i++){
+			for(int j = 0; j < MAXIMUS; j ++){
+//				printf("%d,%d\n",i,j);
+				if(p[i][j] != 0)
+					continue;
+				q[i][j]=AICheck(i,j,Now);
+				if(q[i][j]>MAX){
+					k = i;
+					l = j;
+					MAX=q[i][j];
+				}
+				
+//				printf("\n");
+			}
+		}
+		
+		Cx=k;
+		Cy=l;
+    	Put();
+//    	printf("$$$%d$$$\n",MAX);
+//		for(int i = 0; i < MAXIMUS; i++){
+//			for(int j = 0; j < MAXIMUS; j ++){
+//				printf(" %d ",q[j][i]);
+//			}
+//			printf("\n");
+//		}
+	}
+
 int AICheck(int Cx,int Cy,int now){		//  检测该位置八个方向上的棋子并统计该点分数 
     	
 		int w=0,x=0,y=0,z=0,i; //记录横竖正斜反斜四个方向上属于哪类情况 
