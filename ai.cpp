@@ -5,10 +5,7 @@
     #include <string.h>
 /*宏定义*/ 
     #define MAXIMUS 15 //定义棋盘大小
-/*全局变量*/ 
-int p[MAXIMUS][MAXIMUS];//存储对局信息
-int Cx,Cy;//当前光标位置
-int Now;//当前走子的玩家，1代表黑，2代表白
+
 /*函数声明*/ 
 void Auto(int p[MAXIMUS][MAXIMUS],int *k,int *l);
 int AICheck(int Cx,int Cy,int now);
@@ -56,7 +53,10 @@ int AliveTwo[4][10] = {2,2,0,0,1,1,0,2,2,2, // 1
 						  
 						 };
 
-void Auto(int p[MAXIMUS][MAXIMUS],int *k,int *l){
+void Auto(int p[MAXIMUS][MAXIMUS],int *k,int *l,int Now){
+	//Now代表当前走子的玩家，1代表黑，2代表白
+	//p[MAXIMUS][MAXIMUS]存储对局信息
+	//k,l为指针，保存下棋位置
     	int q[15][15]={};
     	int m=7;
     	int n=7;
