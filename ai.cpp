@@ -57,7 +57,6 @@ void Auto(){
     	int MAX=0;int scored;
     	for(int i = 0; i < MAXIMUS; i++){
 			for(int j = 0; j < MAXIMUS; j ++){
-//				printf("%d,%d\n",i,j);
 				if(p[i][j] != 0)
 					continue;
 				q[i][j]=AICheck(i,j,Now);
@@ -67,20 +66,12 @@ void Auto(){
 					MAX=q[i][j];
 				}
 				
-//				printf("\n");
 			}
 		}
 		
 		Cx=k;
 		Cy=l;
     	Put();
-//    	printf("$$$%d$$$\n",MAX);
-//		for(int i = 0; i < MAXIMUS; i++){
-//			for(int j = 0; j < MAXIMUS; j ++){
-//				printf(" %d ",q[j][i]);
-//			}
-//			printf("\n");
-//		}
 	}
 
 int AICheck(int Cx,int Cy,int now){		//  检测该位置八个方向上的棋子并统计该点分数 
@@ -189,11 +180,9 @@ int AICheck(int Cx,int Cy,int now){		//  检测该位置八个方向上的棋子
             Z[4+i]=-1;
         }
 	}
-    z = Judge(Z);
-    standard(Z);
+  	z = Judge(Z);
+  	standard(Z);
 	z = Judge(Z);
-	
-	
 	
 	return Scoring(w,x,y,z);
 	}
@@ -254,10 +243,6 @@ int Scoring(int w,int x,int y,int z){
     
     int Judge(int a[10]){		// 判断哪类情况 
     	
-//    	printf("\n");
-    	for(int j = 0; j < 10; j ++){ 
-//    		printf("%d ",a[j]);
-   		 }
     	for(int i = 0; i < 4; i ++){ 
     		for(int j = 0; j < 10; j ++){ 
     			if(Compare(a[j],AliveTwo[i][j])==0)
