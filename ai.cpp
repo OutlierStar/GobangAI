@@ -112,3 +112,172 @@ int AICheck(int Cx,int Cy,int now){		//  检测该位置八个方向上的棋子
 	
 	return Scoring(w,x,y,z);
 	}
+
+int Scoring(int w,int x,int y,int z){
+    	int sum=0;
+    	if(w==3 || x==3 || y==3 || z==3 ){
+    		return 1000;
+		}
+		if(w==2 || x==2 || y==2 || z==2 ){
+			sum+=500;
+		}
+		if(Statistics(w,x,y,z,1)==1){
+			sum+=7;
+		}else if(Statistics(w,x,y,z,1)>1){
+			sum+=30;
+		}
+		if(Statistics(w,x,y,z,5)==1){
+			sum+=7;
+		}else if(Statistics(w,x,y,z,5)>1){
+			sum+=30;
+		}
+		sum+=(Statistics(w,x,y,z,4));
+		sum+=(Statistics(w,x,y,z,7));
+		sum+=(2 * Statistics(w,x,y,z,6));
+		
+		
+		return sum;
+	}
+    
+    int Statistics(int w,int x,int y,int z,int num){
+    	int sum=0;
+    	if(w==num) sum++;
+    	if(x==num) sum++;
+    	if(y==num) sum++;
+    	if(z==num) sum++;
+    	return sum;
+	}
+    
+    int Compare(int k,int l){	// 比较 
+    	if(l==2){
+    		return 1;
+		}else if(k==l){
+			return 1;
+		}
+		return 0;
+	}
+    
+    int standard(int a[10]){
+    	for(int i = 0; i < 10 ; i ++ ){
+    		if(a[i]==1){
+    			a[i]=-1;
+			}else if(a[i]==-1){
+				a[i]=1;
+			}
+		}
+	}
+    
+    int Judge(int a[10]){		// 判断哪类情况 
+    	
+//    	printf("\n");
+    	for(int j = 0; j < 10; j ++){ 
+//    		printf("%d ",a[j]);
+   		 }
+    	for(int i = 0; i < 4; i ++){ 
+    		for(int j = 0; j < 10; j ++){ 
+    			if(Compare(a[j],AliveTwo[i][j])==0)
+    				break;
+    			if(j==9)
+    				return 1;
+			}
+			for(int j = 0; j < 10; j ++){ 
+    			if(Compare(a[9-j],AliveTwo[i][j])==0)
+    				break;
+    			if(j==9)
+    				return 1;
+			}
+		}
+		
+		for(int i = 0; i < 2; i ++){ 
+    		for(int j = 0; j < 10; j ++){ 
+    			if(Compare(a[j],AliveThree[i][j])==0)
+    				break;
+    			if(j==9)
+    				return 2;
+			}
+			for(int j = 0; j < 10; j ++){ 
+    			if(Compare(a[9-j],AliveThree[i][j])==0)
+    				break;
+    			if(j==9)
+    				return 2;
+			}
+		}
+		
+		for(int i = 0; i < 3; i ++){ 
+    		for(int j = 0; j < 10; j ++){ 
+    			if(Compare(a[j],DangeFour[i][j])==0)
+    				break;
+    			if(j==9)
+    				return 3;
+			}
+			for(int j = 0; j < 10; j ++){ 
+    			if(Compare(a[9-j],DangeFour[i][j])==0)
+    				break;
+    			if(j==9)
+    				return 3;
+			}
+		}
+		
+		for(int i = 0; i < 5; i ++){ 
+    		for(int j = 0; j < 10; j ++){ 
+    			if(Compare(a[j],AsleepTwo[i][j])==0)
+    				break;
+    			if(j==9)
+    				return 4;
+			}
+			for(int j = 0; j < 10; j ++){ 
+    			if(Compare(a[9-j],AsleepTwo[i][j])==0)
+    				break;
+    			if(j==9)
+    				return 4;
+			}
+		}
+		
+		for(int i = 0; i < 10; i ++){ 
+    		for(int j = 0; j < 10; j ++){ 
+    			if(Compare(a[j],AsleepThree[i][j])==0)
+    				break;
+    			if(j==9)
+    				return 5;
+			}
+			for(int j = 0; j < 10; j ++){ 
+    			if(Compare(a[9-j],AsleepThree[i][j])==0)
+    				break;
+    			if(j==9)
+    				return 5;
+			}
+		}
+		
+		for(int i = 0; i < 3; i ++){ 
+    		for(int j = 0; j < 10; j ++){ 
+    			if(Compare(a[j],OnlyOne[i][j])==0)
+    				break;
+    			if(j==9)
+    				return 6;
+			}
+			for(int j = 0; j < 10; j ++){ 
+    			if(Compare(a[9-j],OnlyOne[i][j])==0)
+    				break;
+    			if(j==9)
+    				return 6;
+			}
+		}
+		
+		for(int i = 0; i < 1; i ++){ 
+    		for(int j = 0; j < 10; j ++){ 
+    			if(Compare(a[j],OnlyTwo[i][j])==0)
+    				break;
+    			if(j==9)
+    				return 7;
+			}
+			for(int j = 0; j < 10; j ++){ 
+    			if(Compare(a[9-j],OnlyTwo[i][j])==0)
+    				break;
+    			if(j==9)
+    				return 7;
+			}
+		}
+		
+		
+		return 0;
+	}
