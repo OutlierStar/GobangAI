@@ -1,6 +1,8 @@
 # GobangAI 五子棋ai 人机对战
 Gobang AI  Function
 
+博客地址：http://t.csdn.cn/nWHRe
+
 五子棋ai人机对战部分代码
 
 1.只是人机对战部分代码
