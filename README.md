@@ -13,6 +13,6 @@ Gobang AI  Function
 
 4.有问题请在issues提出
 
-5. 24/7 online 24/7在线消息秒回
+5. 24/7 online 
 
 
